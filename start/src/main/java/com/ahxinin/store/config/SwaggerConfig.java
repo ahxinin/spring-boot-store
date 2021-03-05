@@ -8,15 +8,17 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
+ * swagger配置
  * @Author: hexin
  * @Date: 2021/3/1
  */
 @Component
-public class SwaggerConfigure {
+public class SwaggerConfig {
 
     @Bean
-    public Docket petApi(){
-        return new Docket(DocumentationType.SWAGGER_2).select()
+    public Docket api(){
+        return new Docket(DocumentationType.SWAGGER_2)
+            .select()
             .apis(RequestHandlerSelectors.any())
             .paths(PathSelectors.any())
             .build();
