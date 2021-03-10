@@ -19,6 +19,8 @@
         <HikariCP.version>4.0.2</HikariCP.version>
         <lombok.version>1.18.18</lombok.version>
         <junit.version>4.13.2</junit.version>
+        <java-jwt.version>3.14.0</java-jwt.version>
+        <fastjson.version>1.2.73</fastjson.version>
     </properties>
 
     <modules>
@@ -66,6 +68,18 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

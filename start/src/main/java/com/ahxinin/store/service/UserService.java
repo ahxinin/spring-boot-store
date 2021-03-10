@@ -3,6 +3,8 @@ package com.ahxinin.store.service;
 import com.ahxinin.store.entity.User;
 import com.ahxinin.store.mapper.UserMapper;
 import com.ahxinin.store.request.UserLoginRequest;
+import com.ahxinin.store.response.UserLoginResponse;
+import com.ahxinin.store.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,13 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public String login(UserLoginRequest userLoginRequest){
+    public UserLoginResponse login(UserLoginRequest userLoginRequest){
         User user = userMapper.findByAccount(userLoginRequest.getAccount());
         if (user != null && user.getPassword().equals(userLoginRequest.getPassword())){
-            return "login success";
+            String token = JWTUtil.createToken();
+            return UserLoginResponse.builder().id(user.getId()).token(token).build();
         } else {
-            return "login fail";
+            return null;
         }
     }
 }

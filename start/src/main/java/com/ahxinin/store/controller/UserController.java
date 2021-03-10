@@ -1,7 +1,9 @@
 package com.ahxinin.store.controller;
 
 import com.ahxinin.store.request.UserLoginRequest;
+import com.ahxinin.store.response.UserLoginResponse;
 import com.ahxinin.store.service.UserService;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,11 @@ public class UserController {
     @PostMapping("login/v1")
     @ApiOperation(value = "登录")
     public ResponseEntity<String> login(@RequestBody UserLoginRequest userLoginRequest){
-        String response = userService.login(userLoginRequest);
-        return ResponseEntity.ok(response);
+        UserLoginResponse response = userService.login(userLoginRequest);
+        if (response != null){
+            return ResponseEntity.ok(JSONObject.toJSONString(response));
+        } else {
+            return ResponseEntity.ok("登录失败");
+        }
     }
 }
